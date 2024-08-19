@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okey-Event Klicker</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon"> <!-- Icon hinzufügen -->
+    <style>
+        body {
+            background-image: url('background.png'); /* Hintergrundbild */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1400px; /* Breitere Container-Box */
+            margin: 20px;
+        }
+        .card-section {
+            width: 420px; /* Breitere Box für 4 Karten nebeneinander */
+            margin: 10px;
+            text-align: center;
+        }
+        .card-section h2 {
+            background-color: #3E3E3E;
+            padding: 5px;
+            margin: 0;
+            font-size: 18px;
+            color: white;
+            border: 2px solid #555;
+            border-radius: 5px;
+        }
+        .card-frame {
+            background-color: #3E3E3E;
+            border: 2px solid #555;
+            border-radius: 5px;
+            padding: 10px;
+            height: 250px;
+            width: 420px; /* Breitere Box für 4 Karten nebeneinander */
+            box-sizing: border-box;
+            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: center;
+        }
+        .card-frame img {
+            width: 80px; /* Breite der Kartenbilder angepasst */
+            height: 100px; /* Höhe der Kartenbilder angepasst */
+            margin: 5px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .card-frame img.hidden {
+            display: none;
+        }
+        .button-container {
+            margin: 10px;
+        }
+        .button-container button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-container button:hover {
+            background-color: #666;
+        }
+        #info-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3E3E3E;
+            padding: 20px;
+            border: 2px solid #555;
+            border-radius: 5px;
+            width: 600px;
+            height: 456px;
+            box-sizing: border-box;
+            overflow: hidden;
+            z-index: 1000; /* Damit das Popup über anderen Inhalten liegt */
+        }
+        #info-popup img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #info-popup button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #info-popup button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Okey-Event Klicker © martinmarkus</h1>
+    <div class="container">
+        <div class="card-section">
+            <h2>Rote Karten</h2>
+            <div class="card-frame" id="red-cards">
+                <!-- Kartenbilder hier hinzufügen -->
+                <img src="red_1.png" alt="Rote Karte 1" onclick="toggleVisibility('red_1')">
+                <img src="red_2.png" alt="Rote Karte 2" onclick="toggleVisibility('red_2')">
+                <img src="red_3.png" alt="Rote Karte 3" onclick="toggleVisibility('red_3')">
+                <img src="red_4.png" alt="Rote Karte 4" onclick="toggleVisibility('red_4')">
+                <img src="red_5.png" alt="Rote Karte 5" onclick="toggleVisibility('red_5')">
+                <img src="red_6.png" alt="Rote Karte 6" onclick="toggleVisibility('red_6')">
+                <img src="red_7.png" alt="Rote Karte 7" onclick="toggleVisibility('red_7')">
+                <img src="red_8.png" alt="Rote Karte 8" onclick="toggleVisibility('red_8')">
+            </div>
+        </div>
+        <div class="card-section">
+            <h2>Blaue Karten</h2>
+            <div class="card-frame" id="blue-cards">
+                <!-- Kartenbilder hier hinzufügen -->
+                <img src="blue_1.png" alt="Blaue Karte 1" onclick="toggleVisibility('blue_1')">
+                <img src="blue_2.png" alt="Blaue Karte 2" onclick="toggleVisibility('blue_2')">
+                <img src="blue_3.png" alt="Blaue Karte 3" onclick="toggleVisibility('blue_3')">
+                <img src="blue_4.png" alt="Blaue Karte 4" onclick="toggleVisibility('blue_4')">
+                <img src="blue_5.png" alt="Blaue Karte 5" onclick="toggleVisibility('blue_5')">
+                <img src="blue_6.png" alt="Blaue Karte 6" onclick="toggleVisibility('blue_6')">
+                <img src="blue_7.png" alt="Blaue Karte 7" onclick="toggleVisibility('blue_7')">
+                <img src="blue_8.png" alt="Blaue Karte 8" onclick="toggleVisibility('blue_8')">
+            </div>
+        </div>
+        <div class="card-section">
+            <h2>Gelbe Karten</h2>
+            <div class="card-frame" id="yellow-cards">
+                <!-- Kartenbilder hier hinzufügen -->
+                <img src="yellow_1.png" alt="Gelbe Karte 1" onclick="toggleVisibility('yellow_1')">
+                <img src="yellow_2.png" alt="Gelbe Karte 2" onclick="toggleVisibility('yellow_2')">
+                <img src="yellow_3.png" alt="Gelbe Karte 3" onclick="toggleVisibility('yellow_3')">
+                <img src="yellow_4.png" alt="Gelbe Karte 4" onclick="toggleVisibility('yellow_4')">
+                <img src="yellow_5.png" alt="Gelbe Karte 5" onclick="toggleVisibility('yellow_5')">
+                <img src="yellow_6.png" alt="Gelbe Karte 6" onclick="toggleVisibility('yellow_6')">
+                <img src="yellow_7.png" alt="Gelbe Karte 7" onclick="toggleVisibility('yellow_7')">
+                <img src="yellow_8.png" alt="Gelbe Karte 8" onclick="toggleVisibility('yellow_8')">
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="resetButtons()">Reset</button>
+        <button onclick="toggleInfoPopup()">Info</button>
+    </div>
+
+    <div id="info-popup">
+        <img src="info2.png" alt="Info">
+        <button onclick="closeInfoPopup()">Close</button>
+    </div>
+
+    <script>
+        function toggleVisibility(cardId) {
+            const img = document.querySelector(`img[src*="${cardId}"]`);
+            if (img) {
+                img.classList.toggle('hidden');
+            }
+        }
+
+        function resetButtons() {
+            const images = document.querySelectorAll('.card-frame img');
+            images.forEach(img => img.classList.remove('hidden'));
+        }
+
+        function toggleInfoPopup() {
+            const popup = document.getElementById('info-popup');
+            if (popup.style.display === 'block') {
+                popup.style.display = 'none';
+            } else {
+                popup.style.display = 'block';
+            }
+        }
+
+        function closeInfoPopup() {
+            document.getElementById('info-popup').style.display = 'none';
+        }
+
+        // Schließt das Info-Popup, wenn irgendwo auf den Bildschirm geklickt wird
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('info-popup');
+            if (popup.style.display === 'block' && !popup.contains(event.target) && !event.target.closest('button')) {
+                closeInfoPopup();
+            }
+        });
+    </script>
+</body>
+</html>
